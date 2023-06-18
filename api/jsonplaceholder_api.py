@@ -1,11 +1,9 @@
 import requests
 
-API_URL = "https://jsonplaceholder.typicode.com"
-
 
 class JSONPlaceholderAPI:
-    def __init__(self):
-        self.base_url = API_URL
+    def __init__(self, base_url):
+        self.base_url = base_url
 
     def get_posts(self):
         return requests.get(f"{self.base_url}/posts")
