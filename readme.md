@@ -33,6 +33,8 @@ GET /posts, POST /posts, DELETE /posts
 
 # Автоматизация тестирования API
 
+![workflow](https://github.com/vixalirium/fictional-parakeet/actions/workflows/python-app.yml/badge.svg)
+
 Проект с автотестами, проверяющий работу эндпоинта `https://jsonplaceholder.typicode.com/posts`.
 
 ## Особенности JSONPlaceholder
