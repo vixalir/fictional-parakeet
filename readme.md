@@ -52,13 +52,13 @@ GET /posts, POST /posts, DELETE /posts
 1. Склонируйте репозиторий:
 
    ```
-   git clone <repository-url>
+   git clone https://github.com/vixalir/fictional-parakeet.git
    ```
 
 2. Перейдите в папку проекта:
 
    ```
-   cd api_autotests
+   cd fictional-parakeet
    ```
 
 Дальнейшие шаги зависят от того, как вы хотите запустить данный проект.
