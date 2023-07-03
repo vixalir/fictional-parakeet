@@ -14,7 +14,7 @@ def test_get_posts_with_id(json_placeholder_api, post_id):
     response_json = response.json()
 
     assert response.status_code == 200
-    assert response_json["id"] == post_id
+    assert response_json.get("id") == post_id
 
 
 @pytest.mark.parametrize("post_id", [-1, "string", 3.14, "'", '"', 8086])
@@ -35,9 +35,9 @@ def test_post_posts_with_data(json_placeholder_api, userId, title, body):
     response_json = response.json()
 
     assert response.status_code == 201
-    assert response_json["userId"] == userId
-    assert response_json["title"] == title
-    assert response_json["body"] == body
+    assert response_json.get("userId") == userId
+    assert response_json.get("title") == title
+    assert response_json.get("body") == body
 
 
 @pytest.mark.xfail(
