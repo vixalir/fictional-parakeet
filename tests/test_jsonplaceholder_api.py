@@ -70,4 +70,4 @@ def test_delete_posts_with_id(json_placeholder_api, post_id):
 def test_delete_posts_with_invalid_id(json_placeholder_api, post_id):
     response = json_placeholder_api.delete_posts(post_id)
 
-    assert response.status_code == HTTPStatus.OK, f"Unexpected success in deleting post with invalid ID {post_id}."
+    assert response.status_code == HTTPStatus.BAD_REQUEST, f"Unexpected success in deleting post with invalid ID {post_id}."
