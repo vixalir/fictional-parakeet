@@ -8,12 +8,12 @@ class JSONPlaceholderAPI:
     def get_posts(self):
         return requests.get(f"{self.base_url}/posts")
 
-    def get_posts_by_id(self, _id=None):
-        return requests.get(f"{self.base_url}/posts/{_id}")
+    def get_posts_by_id(self, postId=None):
+        return requests.get(f"{self.base_url}/posts/{postId}")
 
     def post_posts(self, userId=None, title=None, body=None):
         json_dict = {"userId": userId, "title": title, "body": body}
         return requests.post(f"{self.base_url}/posts", json=json_dict)
 
-    def delete_posts(self, _id=None):
-        return requests.delete(f"{self.base_url}/posts/{_id}")
+    def delete_posts(self, postId=None):
+        return requests.delete(f"{self.base_url}/posts/{postId}")
