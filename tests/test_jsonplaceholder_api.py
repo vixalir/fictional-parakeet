@@ -1,10 +1,10 @@
 import pytest
 from fixtures.fixture_jsonplaceholder_api import json_placeholder_api
-
+from http import HTTPStatus
 
 def test_get_posts(json_placeholder_api):
     response = json_placeholder_api.get_posts()
-    assert response.status_code == 200
+    assert response.status_code == HTTPStatus.OK
     assert len(response.content) > 0
 
 
@@ -13,14 +13,14 @@ def test_get_posts_with_id(json_placeholder_api, post_id):
     response = json_placeholder_api.get_posts_by_id(post_id)
     response_json = response.json()
 
-    assert response.status_code == 200
+    assert response.status_code == HTTPStatus.OK
     assert response_json.get("id") == post_id
 
 
 @pytest.mark.parametrize("post_id", [-1, "string", 3.14, "'", '"', 8086])
 def test_get_posts_with_invalid_id(json_placeholder_api, post_id):
     response = json_placeholder_api.get_posts_by_id(post_id)
-    assert response.status_code == 404
+    assert response.status_code == HTTPStatus.NOT_FOUND
 
 
 @pytest.mark.parametrize(
@@ -34,7 +34,7 @@ def test_post_posts_with_data(json_placeholder_api, userId, title, body):
     response = json_placeholder_api.post_posts(userId=userId, title=title, body=body)
     response_json = response.json()
 
-    assert response.status_code == 201
+    assert response.status_code == HTTPStatus.CREATED
     assert response_json.get("userId") == userId
     assert response_json.get("title") == title
     assert response_json.get("body") == body
@@ -55,14 +55,14 @@ def test_post_posts_with_data(json_placeholder_api, userId, title, body):
 def test_post_posts_with_invalid_data(json_placeholder_api, userId, title, body):
     response = json_placeholder_api.post_posts(userId=userId, title=title, body=body)
 
-    assert response.status_code == 500
+    assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
 @pytest.mark.parametrize("post_id", [1, 2, 3])
 def test_delete_posts_with_id(json_placeholder_api, post_id):
     response = json_placeholder_api.delete_posts(post_id)
 
-    assert response.status_code == 200
+    assert response.status_code == HTTPStatus.OK
 
 
 @pytest.mark.xfail(strict=True, reason="JSONPlaceholder does not validate the ID.")
@@ -70,4 +70,4 @@ def test_delete_posts_with_id(json_placeholder_api, post_id):
 def test_delete_posts_with_invalid_id(json_placeholder_api, post_id):
     response = json_placeholder_api.delete_posts(post_id)
 
-    assert response.status_code == 500
+    assert response.status_code == HTTPStatus.OK
